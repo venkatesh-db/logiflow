@@ -54,8 +54,8 @@ For the instructor running this course, not participants. Adapted from RxFlow's 
 - Reclone from a clean tag for the next cohort — don't reuse a repo participants have committed to.
 - If a cohort finds a calibration problem, add it to a `calibration-notes.md` here (not yet written — write one after this repo's first real cohort, same as RxFlow's).
 
-## Not yet done (this adaptation, unlike RxFlow's original)
+## Not yet done
 
-- **Day 3's CI workflow has not been run live against a real GitHub PR yet** — only structurally adapted from RxFlow's verified version. Verify it once before relying on it for a cohort, the same way RxFlow's was verified (see RxFlow's `calibration-notes.md`).
+- ~~Day 3's CI workflow, run live~~ **Done.** Pushed to `venkatesh-db/logiflow`, opened a test PR, confirmed `pr-review.yml` triggers and posts the expected advisory comment, same as RxFlow.
 - **No technical dry run equivalent to RxFlow's Phase 6** has been done on this repo yet.
 - **No full timed human dry-run** — same gap as RxFlow.

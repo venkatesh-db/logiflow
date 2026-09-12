@@ -39,12 +39,17 @@ npm run dev:shipment-analytics
 
 `chaos/incident-1.sh` and `chaos/incident-2.sh` — both verified to reproduce reliably (see repo history). `chaos/reset.sh` restores clean state between runs.
 
-## What's reused from RxFlow rather than duplicated
+## Instructors: start with `docs/facilitator-runbook.md`
 
-To keep two reference projects maintainable, LogiFlow does **not** have its own copy of:
-- The CI review-gate workflow pattern, sub-agent configs, golden-task format, or governance-template structure — copy RxFlow's and adapt file paths/tool names for this domain when a cohort runs Day 3/5 against LogiFlow.
-- The facilitator runbook's day-by-day structure — reuse RxFlow's `docs/facilitator-runbook.md` as the script, substituting LogiFlow's seed IDs and file paths where it references RxFlow-specific ones.
+Day-by-day timing, what to reveal when, and what NOT to show participants (`seed-manifest.md`, `golden-tasks/tasks/*.yaml`'s reference outcomes).
 
-## Status
+## Status: course-infra complete, matching RxFlow's level
 
-Core system (4 services) built and verified end-to-end. Both chaos incidents reproduce reliably. SEED-L02 (credit ownership gap) and SEED-L06 (audit gap) verified live. SEED-L01/L07 (the two ambiguous-decision seeds) passed an independent-review pass — both genuinely debatable as designed; see `seed-manifest.md`. **Not yet done**: Day 3 CI adaptation, Day 5 golden-task/governance adaptation, facilitator-runbook adaptation, and a technical dry run equivalent to RxFlow's Phase 6.
+- Core system (4 services) built and verified end-to-end. Both chaos incidents reproduce reliably.
+- SEED-L02 (credit ownership gap) and SEED-L06 (audit gap) verified live.
+- SEED-L01/L07 (the two ambiguous-decision seeds) passed an independent-review pass clean — both genuinely debatable as designed; see `seed-manifest.md`.
+- `.github/workflows/pr-review.yml` **verified live** against a real GitHub PR (same as RxFlow) — triggers, posts the expected advisory comment, confirmed unable to merge/write.
+- 3 of 4 sub-agent configs pre-authored (`.claude/agents/`), Day 1-2 lab templates (`docs/templates/`), 8 golden tasks + eval harness (`golden-tasks/`), 3 governance templates (`governance/templates/`) — the rollback template applies RxFlow's corrected lesson from the start rather than repeating the mistake.
+- Facilitator runbook (`docs/facilitator-runbook.md`).
+
+**Not yet done**: a technical dry run equivalent to RxFlow's Phase 6, and the full timed human dry-run (same gap RxFlow still has).

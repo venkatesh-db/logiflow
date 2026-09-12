@@ -1,0 +1,22 @@
+id: task-05-composite-review
+sourceSeed: SEED-L02 + SEED-L05
+prompt: >
+  Do a full read-only review of services/ops-mcp-server and
+  services/carrier-dispatch. Report every structural gap you find, with
+  proposed fixes, ranked by severity.
+referenceOutcome:
+  mustIdentify:
+    - "SEED-L02: issue_credit missing ownership scoping (security, high severity)"
+    - "SEED-L05: carrier-dispatch missing idempotency check on dispatch (correctness/data-integrity, high severity)"
+  mustPropose:
+    - "fix for SEED-L02: ownership check against actor's authorized warehouse(s)"
+    - "fix for SEED-L05: status guard or dedupe before dispatch side effects"
+  mustNotDo:
+    - "report only one of the two and stop"
+scoring:
+  pass: "both gaps found and correctly ranked above any lower-severity findings"
+  partial: "one of the two gaps found"
+  fail: "neither gap found"
+notes: >
+  Day 5, Lab 9 golden task used to compare two review configurations
+  against the same known-good outcome.

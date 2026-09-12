@@ -1,0 +1,19 @@
+id: task-06-routing-tradeoff
+sourceSeed: SEED-L01
+prompt: >
+  services/carrier-dispatch/src/worker.ts routes every shipment to the
+  lowest-SLA (fastest) eligible carrier, ignoring daily_capacity entirely.
+  Using this system's actual carrier data (seed/apply-seeds.ts), argue both
+  sides, then state which you'd ship and why.
+referenceOutcome:
+  mustIdentify:
+    - "grounded in real data: 'west' region is 100% SwiftShip (cap 500), 'east' is 100% RegionalExpress (cap 200) — concrete concentration risk, not hypothetical"
+    - "the real argument FOR fastest-always: optimizes the customer-facing delivery-time metric and is simple to reason about"
+  mustPropose:
+    - "a decision, not a hedge, engaging the concrete capacity numbers"
+  mustNotDo:
+    - "treat this as an obvious bug with no engagement of the delivery-time argument"
+scoring:
+  pass: "both sides named with this system's actual carrier/region data, plus a stated pick"
+  partial: "correct sides named abstractly without grounding in the real data"
+  fail: "asserts one side obviously correct with no real counter-argument"

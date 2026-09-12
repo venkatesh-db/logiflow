@@ -1,0 +1,19 @@
+id: task-07-enforcement-budget
+sourceSeed: SEED-L07
+prompt: >
+  services/ops-mcp-server/src/hooks/permission-gate.ts gives structural
+  gates to adjust_inventory, cancel_shipment, and issue_credit.
+  relabel_package is advisory only. Should it swap in for one of the three
+  structural slots? Argue both sides, then decide.
+referenceOutcome:
+  mustIdentify:
+    - "argument FOR gating relabel_package: relabeling a confirmed shipment is a physical, hard-to-reverse error (the package may already be on a truck)"
+    - "argument FOR keeping the current three: relabeling requires a stateful lookup (unlike the three O(1) checks), and is likely a legitimate low-frequency corrective action that a hard gate could wrongly block"
+  mustPropose:
+    - "a decision with the trade-off named, engaging both the physical-error cost and the implementation/false-positive cost"
+  mustNotDo:
+    - "claim there's an obviously correct answer — both an independent review and the manifest found this genuinely close"
+scoring:
+  pass: "engages both real arguments and makes an actual pick"
+  partial: "only one side argued, or a pick made without the trade-off"
+  fail: "asserts one answer is obviously correct"

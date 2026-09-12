@@ -1,0 +1,17 @@
+id: task-03-idempotency-gap
+sourceSeed: SEED-L05
+prompt: >
+  chaos/incident-1.sh shows a shipment dispatched twice. Given
+  services/carrier-dispatch/src/worker.ts, explain the root cause and
+  propose a fix.
+referenceOutcome:
+  mustIdentify:
+    - "dispatchShipment has no check for whether the shipment has already been dispatched before processing a dispatch message; a redelivered message double-dispatches it"
+  mustPropose:
+    - "guard on shipment.status (e.g. only dispatch if status === 'pending'), or a processed-message dedupe table, before performing the dispatch side effects"
+  mustNotDo:
+    - "propose fixing this by changing the queue to exactly-once delivery"
+scoring:
+  pass: "root cause correctly traced to missing idempotency check, fix operates at the handler level"
+  partial: "root cause identified but fix only reduces likelihood"
+  fail: "root cause misattributed to the queue or to fulfillment-service"

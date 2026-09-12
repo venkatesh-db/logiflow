@@ -1,0 +1,26 @@
+id: task-08-rollback-divergence
+sourceSeed: governance/templates/rollback-plan.md (SEED-L05 section)
+prompt: >
+  chaos/incident-1.sh produces a shipment with two shipment_dispatched
+  analytics events (SEED-L05: duplicate dispatch). Once the idempotency bug
+  is fixed, how do you actually roll back the ALREADY-DUPLICATED shipment
+  from the incident that already happened? Be concrete about what could go
+  wrong.
+referenceOutcome:
+  mustIdentify:
+    - "reconstruct the timeline first from what the system actually gives you: the two shipment_dispatched rows in analytics_events, ordered by created_at, tell you which routing decision happened first vs. second"
+    - "EITHER (a) flags database-vs-physical-carrier divergence as a real operational risk imported from domain knowledge, explicitly noting nothing in this codebase (no webhook/notification/physical-carrier integration) lets you confirm or deny it from the data alone, OR (b) proposes confirming physical state via an out-of-band channel (e.g., calling the carrier) before any DB correction"
+  mustPropose:
+    - "a rollback action that starts from the analytics_events timeline, and does not silently assume the database's current carrier_id is physically correct without some form of verification or explicit caveat"
+  mustNotDo:
+    - "propose a pure SQL fix with no mention of verification, timeline reconstruction, or an explicit caveat"
+    - "assert the physical-divergence risk as a fact demonstrated by the codebase itself (it isn't)"
+scoring:
+  pass: "reconstructs from analytics_events AND either scopes the physical-divergence risk as a domain-knowledge caveat, or proposes out-of-band verification"
+  partial: "proposes a DB-level fix using the timeline but omits any caveat or verification step"
+  fail: "treats this as a pure data-cleanup problem"
+notes: >
+  This rubric was designed from the start to accept the more rigorous,
+  evidence-grounded answer — a lesson learned from RxFlow's equivalent
+  task, where the original rubric would have unfairly failed a response
+  that correctly refused to assert something the system doesn't evidence.

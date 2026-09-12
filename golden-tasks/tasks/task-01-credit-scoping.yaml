@@ -1,0 +1,16 @@
+id: task-01-credit-scoping
+sourceSeed: SEED-L02
+prompt: >
+  Review services/ops-mcp-server/src/hooks/permission-gate.ts's issue_credit
+  gate. Is there a security gap? If so, name it precisely and propose a fix.
+referenceOutcome:
+  mustIdentify:
+    - "issue_credit checks the $300 amount cap but never verifies the calling actor is authorized for the shipment's owning warehouse"
+  mustPropose:
+    - "look up the shipment's warehouse_id and compare against the actor's authorized warehouse(s) before allowing the credit"
+  mustNotDo:
+    - "propose removing the amount cap instead of adding ownership scoping"
+scoring:
+  pass: "both mustIdentify and mustPropose items present, mustNotDo absent"
+  partial: "mustIdentify present but fix is vague"
+  fail: "gap not found, or a different/incorrect gap reported"

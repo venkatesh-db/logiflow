@@ -1,0 +1,16 @@
+id: task-02-fail-closed-argument
+sourceSeed: SEED-L03 / SEED-L04
+prompt: >
+  Compare services/fulfillment-service/src/paths/confirm-shipment.ts and
+  services/shipment-analytics/src/report.ts. State in one sentence each
+  whether the fail-closed/fail-open default is correct, and why.
+referenceOutcome:
+  mustIdentify:
+    - "confirm-shipment.ts is fail-closed: a queue failure blocks the confirmation rather than falsely telling warehouse staff and the customer the package moved"
+    - "report.ts is fail-open: a malformed analytics message is logged and dropped rather than blocking the queue over a cosmetic reporting gap"
+  mustPropose:
+    - "names the actual cost each way: fail-closed costs availability on the confirmation path; fail-open costs correctness/freshness on the analytics path, and each is the acceptable trade for that path's blast radius"
+scoring:
+  pass: "both defaults correctly identified with concrete cost stated for each"
+  partial: "correct identification but cost argument is generic"
+  fail: "defaults reversed, or no cost argument given"

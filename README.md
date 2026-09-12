@@ -47,4 +47,4 @@ To keep two reference projects maintainable, LogiFlow does **not** have its own 
 
 ## Status
 
-Core system (4 services) built and verified end-to-end. Both chaos incidents reproduce reliably. SEED-L02 (credit ownership gap) and SEED-L06 (audit gap) verified live. **Not yet done**: independent review of SEED-L01/L07, Day 3 CI adaptation, Day 5 golden-task/governance adaptation, facilitator-runbook adaptation, and a technical dry run equivalent to RxFlow's Phase 6.
+Core system (4 services) built and verified end-to-end. Both chaos incidents reproduce reliably. SEED-L02 (credit ownership gap) and SEED-L06 (audit gap) verified live. SEED-L01/L07 (the two ambiguous-decision seeds) passed an independent-review pass — both genuinely debatable as designed; see `seed-manifest.md`. **Not yet done**: Day 3 CI adaptation, Day 5 golden-task/governance adaptation, facilitator-runbook adaptation, and a technical dry run equivalent to RxFlow's Phase 6.

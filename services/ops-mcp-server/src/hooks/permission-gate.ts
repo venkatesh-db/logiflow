@@ -9,11 +9,26 @@ export interface ToolCall {
 export type Gate = (call: ToolCall) => { allowed: boolean; reason: string };
 
 /**
- * ENFORCEMENT BUDGET: three tools get a structural, hook-enforced gate.
- * Everything else is advisory only — stated in docs/mcp-tool-policy.md,
- * not enforced in code. Structurally enforced: adjust_inventory (rate
- * limit), cancel_shipment (reason required), issue_credit (amount cap +
- * ownership scoping).
+ * ENFORCEMENT BUDGET (SEED-L07, see seed-manifest.md): three tools get a
+ * structural, hook-enforced gate. Everything else is advisory only —
+ * stated in docs/mcp-tool-policy.md, not enforced in code. Structurally
+ * enforced: adjust_inventory (rate limit), cancel_shipment (reason
+ * required), issue_credit (amount cap + ownership scoping).
+ *
+ * `relabel_package` is deliberately left advisory, not an oversight — but
+ * the case is genuinely closer than the other two exclusions:
+ *   FOR promoting it: relabeling a confirmed shipment is a physical,
+ *   hard-to-reverse error (the package may already be on a truck).
+ *   AGAINST: unlike the three structural checks (a count, a non-empty
+ *   string, a numeric cap — all O(1), stateless checks), blocking a
+ *   relabel requires a stateful lookup of shipment status, AND relabeling
+ *   is the one tool here used for legitimate low-frequency operational
+ *   fixes (a customer's address correction, a damaged label) where a hard
+ *   gate risks blocking a corrective action that isn't the problem. If
+ *   this were high-volume in practice, that argument weakens — this
+ *   system doesn't model relabel_package's real call volume, so the
+ *   "advisory is fine because it's rare" side is an assumption, not
+ *   evidenced data. Name that explicitly if you argue this side.
  */
 const gates: Partial<Record<ToolCall["tool"], Gate>> = {
   adjust_inventory: (call) => {

@@ -52,4 +52,6 @@ Day-by-day timing, what to reveal when, and what NOT to show participants (`seed
 - 3 of 4 sub-agent configs pre-authored (`.claude/agents/`), Day 1-2 lab templates (`docs/templates/`), 8 golden tasks + eval harness (`golden-tasks/`), 3 governance templates (`governance/templates/`) — the rollback template applies RxFlow's corrected lesson from the start rather than repeating the mistake.
 - Facilitator runbook (`docs/facilitator-runbook.md`).
 
-**Not yet done**: a technical dry run equivalent to RxFlow's Phase 6, and the full timed human dry-run (same gap RxFlow still has).
+- Technical dry run complete (`calibration-notes.md`) — no bugs found, confirming RxFlow's earlier fixes carried forward correctly.
+
+**Not yet done**: the full timed human dry-run (same gap RxFlow still has).

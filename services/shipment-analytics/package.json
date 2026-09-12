@@ -1,0 +1,8 @@
+{
+  "name": "@logiflow/shipment-analytics",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "dev": "tsx src/report.ts" },
+  "dependencies": { "@logiflow/shared-db": "*" }
+}

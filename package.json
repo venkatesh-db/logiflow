@@ -1,0 +1,23 @@
+{
+  "name": "logiflow",
+  "private": true,
+  "version": "0.1.0",
+  "description": "LogiFlow — Warehouse Fulfillment and Carrier Dispatch Platform. Second reference system for the FDE Intermediate-to-Advanced course (rotates with RxFlow between cohorts).",
+  "workspaces": ["packages/*", "services/*"],
+  "scripts": {
+    "migrate": "tsx packages/shared-db/src/migrate.ts",
+    "seed": "tsx seed/apply-seeds.ts",
+    "reset": "rm -f logiflow.db && npm run migrate && npm run seed",
+    "dev:fulfillment-service": "npm run dev -w services/fulfillment-service",
+    "dev:carrier-dispatch": "npm run dev -w services/carrier-dispatch",
+    "dev:shipment-analytics": "npm run dev -w services/shipment-analytics"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "qs": "^6.16.0"
+  }
+}
